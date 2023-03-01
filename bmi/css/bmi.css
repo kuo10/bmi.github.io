@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color:aquamarine;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bmi_box, .output{
+    width: 800px;
+    background-color: khaki;
+    padding: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    border: 2px solid black;
+    font-size: 30px;
+}
+
+.bmi_box{
+    margin-top: 50px;
+}
+
+.ctrl{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    font-size: 30px;
+    margin: 30px;
+}
+ 
+.output{
+    opacity: 0;
+    transition: 2s;
+}
+
+.output.act{
+    opacity: 1;
+}
