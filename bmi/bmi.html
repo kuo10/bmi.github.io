@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bmi</title>
+    <link rel="stylesheet" href="./css/bmi.css">
+</head>
+<body>
+    <div class="container">
+        <div class="bmi_box">
+            <label for="height">身高(公分)</label>
+            <input type="text" name="height" id="height" placeholder="請輸入身高">
+            <label for="weight">體重(公斤)</label>
+            <input type="text" name="weight" id="weight" placeholder="請輸入體重">
+            <div class="ctrl">
+                <button id="calcualte">計算</button>
+                <button id="clear">清空</button>
+            </div>
+        </div>
+        <div class="output">
+            <p>你的bmi為: <span id="bmi"></span></p>
+            <p>你的健康狀態: <span id="situation"></span></p>
+            <p>衷心建議:<span id="suggest"></span></p>
+
+        </div>
+    </div>
+
+    <script>
+        const start = document.querySelector('#calcualte')
+        const clear = document.querySelector('#clear')
+
+        const height = document.querySelector('#height')
+        const weight = document.querySelector('#weight')
+
+        const bmi = document.querySelector('#bmi')
+        const situation = document.querySelector('#situation')
+        const suggest = document.querySelector('#suggest')
+
+        const output = document.querySelector('.output')
+        
+        start.onclick = function(){
+            let heightValue = height.value
+            let weightValue = weight.value
+
+            if (heightValue < 0 || isNaN(heightValue) ||  heightValue.trim() == '' || !Number.isInteger(Number(heightValue)) || weightValue < 0 || isNaN(weightValue) ||  weightValue.trim() == '' || !Number.isInteger(Number(weightValue))){
+                alert('輸入錯誤!')
+            }else{
+                let bmiResult = weightValue / (heightValue/100) **2
+
+                bmiResult = bmiResult.toFixed(1)
+
+                if (bmiResult < 18.5){
+                    situation.innerHTML = '過輕'
+                    suggest.innerHTML = '請多吃一點'
+                }else if(bmiResult < 24){
+                    situation.innerHTML = '正常範圍'
+                    suggest.innerHTML = '請繼續維持'
+                }else if(bmiResult < 27){
+                    situation.innerHTML = '過重'
+                    suggest.innerHTML = '要減肥了'
+                }else if(bmiResult < 30){
+                    situation.innerHTML = '輕度肥胖'
+                    suggest.innerHTML = '小胖子~'
+                }else if(bmiResult < 35){
+                    situation.innerHTML = '中度肥胖'
+                    suggest.innerHTML = '太胖了'
+                }else{
+                    situation.innerHTML = '重度肥胖'
+                    suggest.innerHTML = '沒救了'
+                }
+                output.classList.add('act')
+
+                bmi.innerHTML = bmiResult
+            }
+        }
+
+
+        // 重設功能->清空輸入 隱藏方框
+        clear.onclick = function(){
+            output.classList.remove('act')
+            height.value = ''
+            weight.value = ''
+        }
+
+
+
+    </script>
+</body>
+</html>
